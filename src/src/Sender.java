@@ -47,6 +47,7 @@ public class Sender {
                 System.out.println("Enter a boolean");
                 boolean bool = userInput.nextBoolean();
                 PrimitiveClass prim = new PrimitiveClass(integer, number, bool);
+                System.out.println("Created PrimitiveClass Object");
                 Visualizer.visualize(prim);
                 xmlOut.output(serial.serialize(prim), new FileOutputStream(fileName));
                 selection = -1;

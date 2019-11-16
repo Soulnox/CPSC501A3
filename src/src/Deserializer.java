@@ -5,6 +5,7 @@ public class Deserializer {
         Element rootElement = document.getRootElement();
         Element element = rootElement.getChild("object");
         String objectClass = element.getAttributeValue("class");
+
         if (objectClass.equalsIgnoreCase("PrimitiveClass")) {
             System.out.println("Object class: " + element.getAttributeValue("class") + " ID: " + element.getAttributeValue("id"));
             int value = Integer.parseInt(element.getChildText("value"));
