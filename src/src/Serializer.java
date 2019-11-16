@@ -18,6 +18,20 @@ public class Serializer {
             prim.addContent(new Element("bool").setText(""+primi.getBool()));
             doc.getRootElement().addContent(prim);
         }
+
+        if (name.equalsIgnoreCase(("PrimitiveArrayClass"))) {
+            PrimitiveArrayClass primiA = new PrimitiveArrayClass((PrimitiveArrayClass) obj);
+            int length = primiA.getLength();
+            Element primA = new Element("object");
+            primA.setAttribute("id", "0");
+            primA.setAttribute("class", "[I");
+            primA.setAttribute("length", "" + length);
+            int[] integers = primiA.getIntegers();
+            for (int i = 0; i < length; i++) {
+                primA.addContent(new Element("value").setText("" + integers[i]));
+            }
+            doc.getRootElement().addContent(primA);
+        }
         return doc;
     }
 }

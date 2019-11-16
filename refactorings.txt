@@ -1,0 +1,3 @@
+Pulled out print statements, user inputs, serialization and visualization out of sender.java main method
+related to creating a primitive class. Added a createPrimitiveClass() method. Some variables made global.
+This code cleanup makes the user selection segment look less cluttered.
