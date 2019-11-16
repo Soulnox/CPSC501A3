@@ -1,3 +1,11 @@
-Pulled out print statements, user inputs, serialization and visualization out of sender.java main method
-related to creating a primitive class. Added a createPrimitiveClass() method. Some variables made global.
+Added a createPrimitiveClass() method in Sender.java.
+Pulled out print statements, user inputs, serialization and visualization out of sender.java main methodrelated to creating a primitive class.
+Some variables made global.
 This code cleanup makes the user selection segment look less cluttered.
+
+Added selectionMessage() method in Sender.java. 
+Removed a multiline print statement from main(). 
+Less clutter in main().
+
+Added createPrimitiveArrayClass() method in Sender.java
+Less clutter in user selection in main().

@@ -32,12 +32,7 @@ public class Sender {
 
         int selection = 0;
         while (selection > -1) {
-            System.out.println("Select an object to create:" +
-                    "\n0. Primitive Object" +
-                    "\n1. Reference Object[Not Implemented]" +
-                    "\n2. Primitive Array Object" +
-                    "\n3. Reference Array Object[Not Implemented]" +
-                    "\n4. Java Collection Object[Not Implemented]");
+            selectionMessage();
             selection = userInput.nextInt();
 
             if (selection == 0) {
@@ -48,17 +43,7 @@ public class Sender {
 
             }
             if (selection == 2) {
-                System.out.println("Array length?");
-                int size = userInput.nextInt();
-                int[] integers = new int[size];
-                for (int i = 0; i < size; i++) {
-                    System.out.println("Please enter an integer for element " + i);
-                    integers[i] = userInput.nextInt();
-                }
-                PrimitiveArrayClass primA = new PrimitiveArrayClass(integers);
-                System.out.println("Created PrimitiveClass Object");
-                Visualizer.visualize(primA);
-                xmlOut.output(serial.serialize(primA), new FileOutputStream(fileName));
+                createPrimitiveArrayClass();
                 selection = -1;
             }
             if (selection == 3) {
@@ -83,6 +68,15 @@ public class Sender {
         senderSocket.close();
     }
 
+    public static void selectionMessage() {
+        System.out.println("Select an object to create:" +
+                "\n0. Primitive Object" +
+                "\n1. Reference Object[Not Implemented]" +
+                "\n2. Primitive Array Object" +
+                "\n3. Reference Array Object[Not Implemented]" +
+                "\n4. Java Collection Object[Not Implemented]");
+    }
+
     public static void createPrimitiveClass() throws IOException {
         System.out.println("Creating a primitive Object");
         System.out.println("Enter an integer");
@@ -95,5 +89,19 @@ public class Sender {
         System.out.println("Created PrimitiveClass Object");
         Visualizer.visualize(prim);
         xmlOut.output(serial.serialize(prim), new FileOutputStream(fileName));
+    }
+
+    public static void createPrimitiveArrayClass() throws IOException {
+        System.out.println("Array length?");
+        int size = userInput.nextInt();
+        int[] integers = new int[size];
+        for (int i = 0; i < size; i++) {
+            System.out.println("Please enter an integer for element " + i);
+            integers[i] = userInput.nextInt();
+        }
+        PrimitiveArrayClass primA = new PrimitiveArrayClass(integers);
+        System.out.println("Created PrimitiveClass Object");
+        Visualizer.visualize(primA);
+        xmlOut.output(serial.serialize(primA), new FileOutputStream(fileName));
     }
 }
