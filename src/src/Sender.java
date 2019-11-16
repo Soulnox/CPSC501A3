@@ -9,13 +9,17 @@ import java.util.Scanner;
 public class Sender {
 
     private static DataOutputStream outBuffer;
+    private static Scanner userInput = new Scanner(System.in);
+    private static XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
+    private static String fileName  = "Sender.xml";
+    private static Serializer serial = new Serializer();
+
 
     public static void main(String args[]) throws IOException {
-        String fileName  = "Sender.xml";
         int count;
         File file;
         FileInputStream fis;
-        XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
+
 
 
         if (args.length != 2) {
@@ -26,9 +30,7 @@ public class Sender {
         System.out.println("Connected to Receiver" + args[0] + "@" + args[1]);
         outBuffer = new DataOutputStream(senderSocket.getOutputStream());
 
-        Scanner userInput = new Scanner(System.in);
         int selection = 0;
-        Serializer serial = new Serializer();
         while (selection > -1) {
             System.out.println("Select an object to create:" +
                     "\n0. Primitive Object" +
@@ -39,19 +41,8 @@ public class Sender {
             selection = userInput.nextInt();
 
             if (selection == 0) {
-                System.out.println("Creating a primitive Object");
-                System.out.println("Enter an integer");
-                int integer = userInput.nextInt();
-                System.out.println("Enter a float");
-                float number = userInput.nextFloat();
-                System.out.println("Enter a boolean");
-                boolean bool = userInput.nextBoolean();
-                PrimitiveClass prim = new PrimitiveClass(integer, number, bool);
-                System.out.println("Created PrimitiveClass Object");
-                Visualizer.visualize(prim);
-                xmlOut.output(serial.serialize(prim), new FileOutputStream(fileName));
+                createPrimitiveClass();
                 selection = -1;
-
             }
             if (selection == 1) {
 
@@ -79,5 +70,19 @@ public class Sender {
         //System.out.println("File Created");
 
         senderSocket.close();
+    }
+
+    public static void createPrimitiveClass() throws IOException {
+        System.out.println("Creating a primitive Object");
+        System.out.println("Enter an integer");
+        int integer = userInput.nextInt();
+        System.out.println("Enter a float");
+        float number = userInput.nextFloat();
+        System.out.println("Enter a boolean");
+        boolean bool = userInput.nextBoolean();
+        PrimitiveClass prim = new PrimitiveClass(integer, number, bool);
+        System.out.println("Created PrimitiveClass Object");
+        Visualizer.visualize(prim);
+        xmlOut.output(serial.serialize(prim), new FileOutputStream(fileName));
     }
 }
