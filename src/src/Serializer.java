@@ -14,8 +14,8 @@ public class Serializer {
             prim.setAttribute("id", "0");
             prim.setAttribute("class", name);
             prim.addContent(new Element("value").setText(""+primi.getValue()));
-            prim.addContent(new Element("money").setText(""+primi.getMoney()));
-            prim.addContent(new Element("bool").setText(""+primi.getBool()));
+            prim.addContent(new Element("value").setText(""+primi.getMoney()));
+            prim.addContent(new Element("value").setText(""+primi.getBool()));
             doc.getRootElement().addContent(prim);
         }
 

@@ -10,9 +10,13 @@ public class Deserializer {
 
         if (objectClass.equalsIgnoreCase("PrimitiveClass")) {
             System.out.println("Object class: " + element.getAttributeValue("class") + " ID: " + element.getAttributeValue("id"));
-            int value = Integer.parseInt(element.getChildText("value"));
-            float money = Float.parseFloat(element.getChildText("money"));
-            boolean bool = Boolean.parseBoolean(element.getChildText("bool"));
+            List values = element.getChildren();
+            Element current = (Element) values.get(0);
+            int value = Integer.parseInt(current.getValue());
+            current = (Element) values.get(1);
+            float money = Float.parseFloat(current.getValue());
+            current = (Element) values.get(2);
+            boolean bool = Boolean.parseBoolean(current.getValue());
             PrimitiveClass prim = new PrimitiveClass(value, money, bool);
             return prim;
         }
